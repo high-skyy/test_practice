@@ -26,4 +26,21 @@ def find_value(start_index, end_index, cur_node, start_tree, end_tree, stree):
     right_sum = find_value(start_index, end_index, cur_node * 2 + 1, mid + 1, end_tree, stree)
     return left_sum + right_sum
 
+def update(index, val, node, left, right):
+    if index < left or index > right:
+        return seg_tree[node]
+
+    if left == right:
+        seg_tree[node] = val
+        return seg_tree[node]
+
+    mid = (left + right) //2
+    left_val = update(index, val, 2*node, left, mid)
+    right_val = update(index, val, 2*node + 1, mid + 1, right)
+    seg_tree[node] = left_val + right_val
+    return seg_tree[node]
+
 print(find_value(4, 7, 1, 0, len(num_list)-1 , seg_tree))
+print("here")
+update(3, 100, 1, 0, len(num_list) - 1)
+print(seg_tree[1])
