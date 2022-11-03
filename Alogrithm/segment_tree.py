@@ -1,3 +1,4 @@
+from collections import defaultdict
 num_list = [1, 2, 5, 3, 9, 6, 5, 3, 2]
 seg_tree = [0 for i in range(2**len(num_list)*2)]
 # log (len(num_list)) ceiling 씌우고 2**
