@@ -1,1 +1,0 @@
-[[i, j, k, l] for i in [lang, "-"], for j in []]
