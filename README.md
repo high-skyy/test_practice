@@ -9,10 +9,14 @@
 - n <= 1,000,000        :       O(n) or O(n*log(n))
 - n <= 10,000           :             O(n**2)
 - n <= 500              :             O(n**3)
-
+100000000
 ```
 1. list 뒤집기
 list[::-1]
+del list1[index], list1.pop(index)
+list1.remove(value)
+list1.insert(index, object)
+list1.count(value)
 
 2. sort
 list1.sort()
@@ -24,6 +28,11 @@ re.findall( "(찾고 싶은 문자열)", 찾음을 당하는 문자열)
 4. re.sub("패턴", "대체 할 패턴", 해당 문자열)
 
 5. c = lambda t : c = lambda t : int(t[0:2])*3600 + int(t[3:5])*60 + int(t[6:8])
+
+6. f"(문자열){(변수):(0공백)(화살표)(자릿수)}    # 공백을 0으로 채운다 / 소수 자릿수 지정 자릿수 다음에 '.' + (소수 몇 째 자리) + f
+answer = f"{hour:2}:{minutes:2}:{second:2}"
+
+7. dq.rotate
 ```
 
 ## IDEA
@@ -45,10 +54,12 @@ re.findall( "(찾고 싶은 문자열)", 찾음을 당하는 문자열)
   - 파괴되지 않는 건물,
 9. alpha-beta tree
   - 사라지는 발판
-10. 완전 탐색 : (양과 늑대 2022)
+10. 완전 탐색
+  - 양과 늑대
 14. 구간합 : 미리 구해서 한칸 씩
 15. 일반화 : 원형을 일직선으로
 16. window : 구간을 정해서 앞으로 가면서 더하거나 빼기
+  - 광고 삽입
 
 
 ## 재귀로 풀 경우 깊이 때문에 런타임 에러가 발생할 수 있음

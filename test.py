@@ -1,1 +1,0 @@
-print("test_py file runned")
