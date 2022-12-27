@@ -1,28 +1,38 @@
-# segment tree
+# 3 연산 문자 (+, -, *) 우선순위 -> 큰 숫자
+# 계산된 결과가 음수 -> 절댓 값
 
-num_list = [2,4,2,24,3,3,3,4,2,2]
-seg_tree = [0 for i in range(len(num_list)* 4)]
+from itertools import permutations
+import re
 
-def make_seg_tree(seg_tree, i, start, end):
-    if start == end:
-        seg_tree[i] = num_list[start]
-        return seg_tree[i]
 
-    mid = (start + end) //2
-    seg_tree[i] = make_seg_tree(seg_tree, 2*i, start, mid) + make_seg_tree(seg_tree, 2*i + 1, mid + 1, end)
-    return seg_tree[i]
-
-def query_seg_tree(seg_tree, i, start_index, end_index, start, end):
-    if start > end_index or end < start_index:
-        print("return 0")
-        return 0
-    if start_index <= start and end <= end_index:
-        print("found")
-        return seg_tree[i]
-
-    mid = (start + end) // 2
-    return query_seg_tree(seg_tree, i * 2, start_index, end_index, start, mid) + query_seg_tree(seg_tree, i*2 + 1, start_index, end_index, mid + 1, end)
-
-make_seg_tree(seg_tree, 1, 0, len(num_list)-1)
-result = query_seg_tree(seg_tree, 1, 1, 5, 0, len(num_list) - 1)
-print(result)
+def solution(expression):
+    answer = 0
+    # 연산자 순서대로 (permutations)
+    # "100-200*300-500+20"
+    operand_list = list(map(int, re.findall("[0-9]+", expression)))
+    operator_list = re.findall("[\W]", expression)
+    new_list = [operand_list[0]]
+    for i in range(len(operator_list)):
+        new_list.append(operator_list[i])
+        new_list.append(operand_list[i])
+    # print(new_list)
+    max_value = 0
+    for op_seq in permutations(operator_list):
+        test_list = new_list[:]
+        for op in op_seq:
+            while op in test_list:
+                index = test_list.index(op)
+                first = test_list.pop(index - 1)
+                second = test_list.pop(index - 1)
+                third = test_list.pop(index - 1)
+                if op == "-":
+                    test_list.insert(index - 1, first - third)
+                elif op == "+":
+                    test_list.insert(index - 1, first + third)
+                else:
+                    test_list.insert(index - 1, first * third)
+            print(test_list)
+        if test_list[0] > max_value:
+            max_value = test_list[0]
+    return max_value
+solution("100-200*300-500+20")
