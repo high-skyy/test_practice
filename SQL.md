@@ -3,6 +3,13 @@
 ## TIP
 겹치는 것이 없으면 굳이 I.뭐를 쓸 필요가 없음.
 
+## 기본
+- SELECT 절은 , 로
+- FROM 절도 , 로
+- WHERE 절의 경우는 AND 로
+- GROUP BY 의 경우 , 로
+- ORDER BY 의 경우 , 로
+
 ## 이중 order by
 결과 집합을 여러 열로 정렬하려면 ORDER BY 절에 ,(쉼표) 로 구분된 열 목록을 지정합니다.
 
@@ -14,7 +21,9 @@ SELECT * FROM 테이블 ORDER BY STATUS DESC, CREATED_AT;
 
 - [Reference](https://dar0m.tistory.com/60)
 
-## DATE_FORMAT 함수
+## 함수 종류
+
+### DATE_FORMAT 함수
 이 함수는 DATETIME의 TYPE을 가진 칼럼의 형식을 수정, 지정해 주는 함수이다.
 - date의 type을 가진 값도 like가 사용이 가능하다.
 ```
@@ -29,6 +38,19 @@ ex) %Y/%M/%D
   - %m : 달 이름을 00 ~ 12 숫자로
   - %D : 일 이름을 1st... 등으로
   - %d : 일 이름을 숫자로 
+
+### COUNT
+테이블에 존재하는 데이터 갯수를 가져오고 싶을 때가 있습니다.
+이때 사용하는 함수가 COUNT 함수입니다.
+COUNT 함수는 테이블에 컬럼의 데이터 갯수를 가져옵니다.
+- 주의 : 이때 NULL인 데이터는 제외하고 계산합니다.
+- 전체 행 갯수를 가져올 때는 컬럼 대신에 *를 지정합니다.
+
+### ROUND
+
+### HOUR
+
+### MONTH
 
 ## Inner join 과 natural join의 차이
 - Inner join
@@ -69,3 +91,23 @@ LIKE '스타%';
 
 ## NULL
 null 넣고 싶으면 select 부분에 null as column명으로 넣을 수 있다.
+
+## BETWEEN
+특정 값의 범위를 
+```
+SELECT *
+FROM [테이블 명]
+WHERE [컬럼명] BETWEEN 값1 AND 값2
+```
+
+## IN
+명시된 데이터들에 해당 정보가 있을 때
+```
+SELECT USERID, NAME, ADDR
+FROM USERTBL
+WHERE ADDR IN ('경남', '전남', '경북', '전북')
+```
+
+## Reference
+- [Reference](https://jhnyang.tistory.com/420)
+- [Reference](https://extbrain.tistory.com/54)
